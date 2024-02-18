@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+service ImageService {
+
+    rpc StreamUploadImage (stream ImageUploadRequest) returns (ImageUploadResponse) {}
+
+    rpc StreamDownloadImage (ImageDownloadRequest) returns (stream ImageDownloadResponse) {}
+
+}
+
+message ImageUploadRequest {
+
+    bytes image_chunk = 1;
+    string name = 2;
+
+}
+
+message ImageUploadResponse {
+
+    string message = 1;
+
+}
+
+message ImageDownloadRequest {
+
+    string name = 1;
+
+}
+
+message ImageDownloadResponse {
+
+    bytes image_chunk = 1;
+
+}
