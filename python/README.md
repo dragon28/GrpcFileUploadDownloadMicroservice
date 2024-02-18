@@ -20,6 +20,7 @@ or
  `python3 -m pip install grpcio-tools`
 
 
+
 Generate Protobuf files:
 
 image_service.proto:
@@ -29,6 +30,7 @@ image_service.proto:
 or
 
 `python3 -m grpc_tools.protoc -I. --python_out=. --pyi_out=. --grpc_python_out=. ./image_service.proto`
+
 
 
 image_service_async.proto:
