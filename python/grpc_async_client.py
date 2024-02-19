@@ -4,6 +4,7 @@ import grpc
 import image_service_async_pb2
 import image_service_async_pb2_grpc
 
+file_chunk_size = 1024
 
 async def stream_upload_image(stub, image_path, image_name):
         
@@ -18,7 +19,7 @@ async def generate_request_iterator(image_path, image_name):
     
     with open(image_path, 'rb') as filerb:
         
-        while chunk := filerb.read(1024):
+        while chunk := filerb.read(file_chunk_size):
             
             yield image_service_async_pb2.ImageUploadRequest(image_chunk=chunk, name=image_name)
 

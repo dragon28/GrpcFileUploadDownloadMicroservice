@@ -7,6 +7,7 @@ import image_service_async_pb2_grpc
 
 filestorage_folder = "./filestorage/"
 
+file_chunk_size = 1024
 
 class ImageServiceServicer(image_service_async_pb2_grpc.ImageServiceServicer):
     
@@ -25,7 +26,7 @@ class ImageServiceServicer(image_service_async_pb2_grpc.ImageServiceServicer):
         
         with open(filestorage_folder + request.name, 'rb') as filerb:
             
-            while chunk := filerb.read(1024):
+            while chunk := filerb.read(file_chunk_size):
                 
                 yield image_service_async_pb2.ImageDownloadResponse(image_chunk=chunk)
 
