@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcImageServer";
+
+package imageservice;
+
+service ImageService {
+
+  rpc Upload(stream ImageFile) returns (ImageResponse) {}
+  rpc Download(ImageRequest) returns (stream ImageData) {}
+
+}
+
+message ImageFile {
+
+  bytes data = 1;
+  string name = 2;
+
+}
+
+message ImageData {
+
+  bytes data = 1;
+
+}
+
+message ImageRequest {
+
+  string name = 1;
+
+}
+
+message ImageResponse {
+
+  string status = 1;
+
+}
